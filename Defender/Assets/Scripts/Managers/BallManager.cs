@@ -19,7 +19,7 @@ namespace Defender.Managers
         public void InstantiateRandomBalls()
         {
             float angle = UnityEngine.Random.Range(0, 100) * Mathf.PI * 2 / 15;
-            Vector3 pos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * GameManager.Instance.ballStartRadius;
+            Vector3 pos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * LoadManager.Instance.data.ballStartRadius;
 
             Instantiate(Ball, GameManager.Instance.target.position + pos, Quaternion.identity); //Level -1 because we start at Level 1 and the array starts at 0 
 

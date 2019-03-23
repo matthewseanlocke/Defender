@@ -39,7 +39,7 @@ namespace Defender.Managers
 
             for (int i = 0; i < racketArray.Length; i++)
             {
-                float angle = i * Mathf.PI * 2 / GameManager.Instance.numberOfRackets;
+                float angle = i * Mathf.PI * 2 / LoadManager.Instance.data.numberOfRackets;
                 Vector3 pos = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * paddleRadius;
                 GameObject temp = Instantiate(Paddle, target.position + pos, Quaternion.identity);
                 temp.transform.LookAt(GameManager.Instance.target);

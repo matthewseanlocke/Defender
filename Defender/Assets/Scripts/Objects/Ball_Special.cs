@@ -2,27 +2,38 @@
 using System.Collections;
 using UnityEngine.UI;
 using Defender.Managers;
-using Defender.Objects;
 
 namespace Defender.Objects
 {
-    //I need to figure out how inheritance works
+    [System.Serializable]
+    public class Ball_Special : MonoBehaviour
+    {
+        public GameObject target;
 
-    //[System.Serializable]
-    //public class Ball_Special : Ball
-    //{
+        public int ballSpeed;
 
-    //    void Start()
-    //    {
+        void Start()
+        {
+            ballSpeed = 10;
+            MoveBall();
 
-    //    }
+            //for (int i = 0; i < GameManager.Instance.allBallsArray.Length; i++)
+            //{
+            //    GameManager.Instance.allBallsArray[i] = new Ball(GameManager.Instance.colorNames[i], ballSpeed, i);
+            //}
+        }
 
-    //    ////Constructor
-    //    //public Ball_Special() : base(string name, int speed, int id)
-    //    //{
-    //    //    //this.ballName = name;
-    //    //    //this.ballSpeed = speed;
-    //    //    //this.ballID = id;
-    //    //}
-    //}
+        //Balls initial velocity
+        public void MoveBall()
+        {
+            this.transform.LookAt(GameManager.Instance.target);
+            this.GetComponent<Rigidbody>().velocity = transform.forward * LoadManager.Instance.data.ballSpeed;
+        }
+
+        // Destorys object when it's no longer in the view on the camera and scene viewer
+        public void OnBecameInvisible()
+        {
+            Destroy(gameObject);
+        }
+    }
 }

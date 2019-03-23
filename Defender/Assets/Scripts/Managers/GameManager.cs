@@ -17,11 +17,13 @@ namespace Defender.Managers
 
         //Private variables should have an underscore before the name _example
         //Properties names are PascalCase 
-        public int Level { get; set; }
-        public int ballSpeed { get; set; }
-        public int Matches { get; set; }
-        public int numberOfRackets { get; set; }
-        public float ballStartRadius { get; set; }
+        
+        //public int ballSpeed { get; set; }
+        //public int Level { get; set; }
+        //public int Matches { get; set; }
+        //public int numberOfRackets { get; set; }
+        //public float ballStartRadius { get; set; }
+        //public bool specialBall;
 
         public Color32 tempColor;
         
@@ -36,7 +38,7 @@ namespace Defender.Managers
         public GameObject[] allBallsArray = new GameObject[6];
         //public Ball[] allBallsArray = new Ball[6]; // I need this array here, because I can't attach it to the Balls because they get destroyed
 
-        public bool specialBall;
+        
 
         private void Awake()
         {
@@ -50,13 +52,13 @@ namespace Defender.Managers
                 Destroy(gameObject);
             }
 
-            //initialize global variables
-            ballSpeed = 5;
-            Level = 1;
-            Matches = 0;
-            numberOfRackets = 6;
-            ballStartRadius = 25;
-            specialBall = false;
+            //initialize global variables... these are now located in the Load Manager
+            //ballSpeed = 5;
+            //Level = 1;
+            //Matches = 0;
+            //numberOfRackets = 6;
+            //ballStartRadius = 25;
+            //specialBall = false;
 
             tempColor = new Color32(255,255,255,255);
 
@@ -93,18 +95,18 @@ namespace Defender.Managers
         public void LoadSameLevel()
         {
             SceneManager.LoadScene("Main");
-            GameManager.Instance.Matches = 0;
-            GameManager.Instance.specialBall = false;
+            LoadManager.Instance.data.Matches = 0;            
+            LoadManager.Instance.data.specialBall = false;
             // you can also write the following line to reload the level
             //Application.LoadLevel(Application.loadedLevel);
         }
 
         public void LoadNextLevel()
         {
-            GameManager.Instance.ballSpeed += 1;
+            LoadManager.Instance.data.ballSpeed += 1;
             SceneManager.LoadScene("Main");
-            GameManager.Instance.Matches = 0;
-            GameManager.Instance.specialBall = false;
+            LoadManager.Instance.data.Matches = 0;
+            LoadManager.Instance.data.specialBall = false;
         }
     }
 }

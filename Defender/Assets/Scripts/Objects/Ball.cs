@@ -38,16 +38,16 @@ namespace Defender.Objects
         public void MoveBall()
         {
             this.transform.LookAt(GameManager.Instance.target);
-            this.GetComponent<Rigidbody>().velocity = transform.forward * GameManager.Instance.ballSpeed;
+            this.GetComponent<Rigidbody>().velocity = transform.forward * LoadManager.Instance.data.ballSpeed;
         }
 
         // Destorys object when it's no longer in the view on the camera and scene viewer
-        void OnBecameInvisible()
+        public void OnBecameInvisible()
         {
             Destroy(gameObject);
         }
 
-        void RandomColor()
+        public void RandomColor()
         {
             this.GetComponent<Renderer>().material.color = GameManager.Instance.colors[UnityEngine.Random.Range(0, GameManager.Instance.colors.Length)];
             //this.GetComponent<TrailRenderer>().startColor = this.GetComponent<Renderer>().material.color;  //trail color should be equal to the actual object color which is random

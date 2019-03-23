@@ -9,24 +9,35 @@ namespace Defender.Managers
 {
     public class LoadManager : MonoBehaviour
     {
-        public static LoadManager instance;
+        //public static LoadManager instance;
+        //Load Manager Instance
+        public static LoadManager Instance { get; private set; }
         public Data data;
+
+        //public int ballSpeed { get; set; }
+        //public int Level { get; set; }
+        //public int Matches { get; set; }
+        //public int numberOfRackets { get; set; }
+        //public float ballStartRadius { get; set; }
+        //public bool specialBall;
 
         string dataFile = "data.dat";
 
         void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
                 DontDestroyOnLoad(this.gameObject);
-                instance = this;
+                Instance = this;
             }
-            else if (instance != this)
+            else if (Instance != this)
                 Destroy(this.gameObject);
         }
 
         public void Start()
         {
+
+
             Load();
         }
 
@@ -68,5 +79,10 @@ namespace Defender.Managers
 [System.Serializable]
 public class Data
 {
-    public int test = 0;
+    public int ballSpeed = 5;
+    public int Level = 1;
+    public int Matches = 0;
+    public int numberOfRackets = 6;
+    public float ballStartRadius = 25;
+    public bool specialBall = false;
 }

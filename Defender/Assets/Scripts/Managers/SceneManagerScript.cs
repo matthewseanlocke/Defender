@@ -4,13 +4,17 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 namespace Defender.Managers
 {
     public class SceneManagerScript : MonoBehaviour
     {
-        public Text SceneText;
-        public Text MatchInaRow;
+        public TextMeshProUGUI SceneText;
+        public TextMeshProUGUI MatchInaRow;
+
+        //public Text SceneText;
+        //public Text MatchInaRow;
 
         //public static SceneManagerScript _instance;
 
@@ -20,8 +24,18 @@ namespace Defender.Managers
 
         public void Start()
         {
-            SceneText.text = GameManager.Instance.Level.ToString();
-            MatchInaRow.text = GameManager.Instance.Matches.ToString();
+
+            //TextMeshProUGUI m_SceneText = gameObject.GetComponent<TextMeshProUGUI>();
+            //TextMeshProUGUI m_MatchInaRow = gameObject.GetComponent<TextMeshProUGUI>();
+
+            SceneText.text = LoadManager.Instance.data.Level.ToString();
+            MatchInaRow.text = LoadManager.Instance.data.Matches.ToString();
+
+            //SceneText.text = LoadManager.Instance.data.Level.ToString();
+            //MatchInaRow.text = LoadManager.Instance.data.Matches.ToString();
+
+            //SceneText = GetComponent<TextMeshProUGUI>();
+            //MatchInaRow = GetComponent<TextMeshProUGUI>();
 
             //SceneText.color = new Color32(255, 255, 255, 255);
             //MatchInaRow.color = new Color32(255, 255, 255, 255);
@@ -39,12 +53,12 @@ namespace Defender.Managers
 
         public void Update()
         {
-            MatchInaRow.text = GameManager.Instance.Matches.ToString(); 
+            MatchInaRow.text = LoadManager.Instance.data.Matches.ToString(); 
 
             MatchInaRow.color = GameManager.Instance.tempColor;
             SceneText.color = GameManager.Instance.tempColor;
 
-            if (GameManager.Instance.Matches >= GameManager.Instance.Level)
+            if (LoadManager.Instance.data.Matches >= LoadManager.Instance.data.Level)
             {
 
 
@@ -56,9 +70,9 @@ namespace Defender.Managers
                 Scene scene = SceneManager.GetActiveScene();
                 if (scene.name == "Main")
                 {
-                    GameManager.Instance.Level++;
+                    LoadManager.Instance.data.Level++;
                     GameManager.Instance.LoadSameLevel();
-                    GameManager.Instance.specialBall = false;
+                    LoadManager.Instance.data.specialBall = false;
                 }
             }
         }

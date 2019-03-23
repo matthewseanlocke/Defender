@@ -34,8 +34,8 @@ namespace Defender.Behaviors
             if (myColor == otherColor)
             {
                 //Debug.Log("Paddle Match");
-                GameManager.Instance.Matches++;
-                Debug.Log(GameManager.Instance.Matches);
+                LoadManager.Instance.data.Matches++;
+                Debug.Log(LoadManager.Instance.data.Matches);
                 //GameManager.Instance.tempColor = myColor;
             }
 
